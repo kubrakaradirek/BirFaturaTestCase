@@ -1,3 +1,5 @@
+using WebApi.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -8,6 +10,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 // IHttpClientFactory'yi servis konteynerine ekliyoruz
 builder.Services.AddHttpClient();
+builder.Services.AddScoped<TokenService>();
 var app = builder.Build();
 app.MapControllers();
 // Configure the HTTP request pipeline.
