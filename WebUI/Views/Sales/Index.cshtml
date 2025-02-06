@@ -1,77 +1,78 @@
 ﻿@model List<SalesInvoiceViewModel>
-@{
-}
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fatura ve Ürün Bilgileri</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+
     <style>
         .row .col {
-            background-color: #D3D3D3; /* Lila arka plan rengi */
-            color: black; /* Yazı rengini siyah yapar */
-            padding: 10px; /* İçeriğin etrafına boşluk ekler */
-            text-align: center; /* Yazıyı ortalar */
-            border: 1px solid #708090; /* Kolonlar arasında koyu lila renkli ince kenar */
-            word-wrap: break-word; /* Yazı uzun olduğunda satır sonlarına geçer */
+            background-color: #FFFFFF;
+            color: black;
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #000000;
+            word-wrap: break-word;
         }
     </style>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("#btnSubmit").click(function () {
-                $("#GridHtmlInput").val($("#Grid").html()); // Grid içeriğini al
-            });
-        });
-    </script>
 </head>
-<body>
 
-    <div class="container" id="Grid">
+<body>
+    <div class="container">
         @foreach (var item in Model)
         {
-            <div class="row">
-                <div class="col"><strong>FaturaID: @item.FaturaID</strong></div>
-                <div class="col"><strong>Müşteri Adı: @item.MusteriAdi</strong></div>
-                <div class="col"><strong>Adres: @item.MusteriAdresi</strong></div>
-                <div class="col"><strong>Telefon: @item.MusteriTel</strong></div>
-                <div class="col"><strong>Şehir: @item.MusteriSehir</strong></div>
-                <div class="col"><strong>Vergi Dairesi: @item.MusteriVergiDairesi</strong></div>
-            </div>
-            <div class="row">
-                <div class="col"><strong>Ürün Adı</strong></div>
-                <div class="col"><strong>Stok Kodu</strong></div>
-                <div class="col"><strong>Satış Adeti</strong></div>
-                <div class="col"><strong>KDV Oranı</strong></div>
-                <div class="col"><strong>KDV Dahil Birim Fiyatı</strong></div>
-            </div>
-            @foreach (var product in item.SatilanUrunler)
-            {
-
+            <div id="fatura_@item.FaturaID">
+                <!-- Her fatura için benzersiz id -->
+                <!-- Fatura bilgileri burada yer alacak -->
                 <div class="row">
-                    <div class="col">@product.UrunAdi</div>
-                    <div class="col">@product.StokKodu</div>
-                    <div class="col">@product.SatisAdeti</div>
-                    <div class="col">@product.KDVOrani</div>
-                    <div class="col">@product.KDVDahilBirimFiyati</div>
+                    <div class="col"><strong>FaturaID: @item.FaturaID</strong></div>
+                    <div class="col"><strong>Müşteri Adı: @item.MusteriAdi</strong></div>
+                    <div class="col"><strong>Adres: @item.MusteriAdresi</strong></div>
+                    <div class="col"><strong>Telefon: @item.MusteriTel</strong></div>
+                    <div class="col"><strong>Şehir: @item.MusteriSehir</strong></div>
+                    <div class="col"><strong>Vergi Dairesi: @item.MusteriVergiDairesi</strong></div>
                 </div>
-
-            }
-            <!-- Faturalandır Butonu -->
-           <div class="row">
-                <div class="col text-center">
-                    <form method="post" action="/Sales/Export">
-                        <input type="hidden" name="GridHtml" id="GridHtmlInput" />
-                        <button type="submit" id="btnSubmit" class="btn btn-primary">Faturalandır</button>
-                    </form>
-
+                <div class="row">
+                    <div class="col"><strong>Ürün Adı</strong></div>
+                    <div class="col"><strong>Stok Kodu</strong></div>
+                    <div class="col"><strong>Satış Adeti</strong></div>
+                    <div class="col"><strong>KDV Oranı</strong></div>
+                    <div class="col"><strong>KDV Dahil Birim Fiyatı</strong></div>
                 </div>
-            </div>  
+                @foreach (var product in item.SatilanUrunler)
+                {
+                    <div class="row">
+                        <div class="col">@product.UrunAdi</div>
+                        <div class="col">@product.StokKodu</div>
+                        <div class="col">@product.SatisAdeti</div>
+                        <div class="col">@product.KDVOrani</div>
+                        <div class="col">@product.KDVDahilBirimFiyati</div>
+                    </div>
+                }
+                <!-- Faturalandır Butonu -->
+                <div class="row">
+                    <div class="col text-center">
+                        <a href="#" class="btn btn-primary downloadPDF" data-faturaid="@item.FaturaID">Print</a>
+                    </div>
+                </div>
+            </div> <!-- Fatura div'inin kapanış tagi -->
         }
     </div>
+
+    <script>
+               $(document).on('click', '.downloadPDF', function () {
+            html2pdf($("#fatura_" + $(this).data("faturaid"))[0], {
+                filename: 'Fatura_' + $(this).data("faturaid") + '.pdf',
+                margin: 10,
+                jsPDF: { unit: 'mm', format: 'a4' }
+            });
+        });
+
+    </script>
+
 </body>
 </html>

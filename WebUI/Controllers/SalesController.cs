@@ -1,5 +1,4 @@
-﻿using iText.Html2pdf;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using WebUI.Models;
 
@@ -12,7 +11,6 @@ namespace WebUI.Controllers
         {
             _httpClientFactory = httpClientFactory;
         }
-        
         public async  Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
@@ -25,16 +23,5 @@ namespace WebUI.Controllers
             }
             return View();
         }
-
-        [HttpPost]
-        public async Task<IActionResult> Export(string GridHtml)
-        {
-            using (MemoryStream stream = new MemoryStream())
-            {
-                HtmlConverter.ConvertToPdf(GridHtml, stream);
-                return File(stream.ToArray(), "application/pdf", "Grid.pdf");
-            }
-        }
-        
     }
 }

@@ -7,17 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="NewFolder\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="itext7" Version="9.0.0" />
-    <PackageReference Include="itext7.bouncy-castle-adapter" Version="9.0.0" />
-    <PackageReference Include="itext7.pdfhtml" Version="6.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Dto\Dto.csproj" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
   </ItemGroup>
 
 </Project>

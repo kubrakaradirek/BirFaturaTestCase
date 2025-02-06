@@ -1,8 +1,6 @@
-﻿using Dto;
-using Microsoft.AspNetCore.Mvc;
-using System.Net.Http;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Text;
-using System.Text.Json;
+using WebApi.Dtos;
 using WebApi.Services;
 
 namespace WebApi.Controllers
@@ -13,7 +11,6 @@ namespace WebApi.Controllers
     {
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly TokenService _tokenService;
-
         public SalesController(IHttpClientFactory httpClientFactory, TokenService tokenService)
         {
             _httpClientFactory = httpClientFactory;
@@ -52,7 +49,7 @@ namespace WebApi.Controllers
             return BadRequest("Satış verileri alınamadı.");
         }
     }
-
 }
+
 
 
