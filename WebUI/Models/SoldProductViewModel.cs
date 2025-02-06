@@ -1,6 +1,6 @@
-﻿namespace WebApi.Dtos
+﻿namespace WebUI.Models
 {
-    public class SoldProductDto
+    public class SoldProductViewModel
     {
         public int UrunID { get; set; }
         public string UrunAdi { get; set; }
