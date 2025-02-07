@@ -1,5 +1,6 @@
 ﻿namespace WebUI.Models
 {
+    //Fatura Modeli
     public class SalesInvoiceViewModel
     {
         public int FaturaID { get; set; }

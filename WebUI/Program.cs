@@ -1,6 +1,6 @@
 var builder = WebApplication.CreateBuilder(args);
 
-// IHttpClientFactory'yi DI container'a kaydedildi
+// IHttpClientFactory konfigürasyonu
 builder.Services.AddHttpClient();
 
 // Add services to the container.
@@ -18,6 +18,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
 
 app.UseRouting();
 

@@ -1,5 +1,6 @@
 ﻿namespace WebUI.Models
 {
+    //Ürün modeli
     public class SoldProductViewModel
     {
         public int UrunID { get; set; }

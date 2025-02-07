@@ -1,5 +1,6 @@
 ﻿namespace WebApi.Dtos
 {
+    // Fatura sınıfı
     public class SalesInvoiceDto
     {
         public int FaturaID { get; set; }

@@ -1,5 +1,6 @@
 ﻿namespace WebApi.Dtos
 {
+    //Satılan ürünler sınıfı
     public class SoldProductDto
     {
         public int UrunID { get; set; }

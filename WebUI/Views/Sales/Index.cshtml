@@ -13,10 +13,10 @@
         .row .col {
             background-color: #FFFFFF;
             color: black;
-            padding: 10px;
+            padding: 10px; /* 10px boşluk eklemesi */
             text-align: center;
-            border: 1px solid #000000;
-            word-wrap: break-word;
+            border: 1px solid #000000; 
+            word-wrap: break-word; /* Uzun kelimelerin satır sonunda düzenlenmesi */
         }
     </style>
 </head>
@@ -25,9 +25,10 @@
     <div class="container">
         @foreach (var item in Model)
         {
+            <!-- Her fatura için  id-->
             <div id="fatura_@item.FaturaID">
-                <!-- Her fatura için benzersiz id -->
-                <!-- Fatura bilgileri burada yer alacak -->
+                
+                <!-- Fatura bilgileri -->
                 <div class="row">
                     <div class="col"><strong>FaturaID: @item.FaturaID</strong></div>
                     <div class="col"><strong>Müşteri Adı: @item.MusteriAdi</strong></div>
@@ -36,6 +37,7 @@
                     <div class="col"><strong>Şehir: @item.MusteriSehir</strong></div>
                     <div class="col"><strong>Vergi Dairesi: @item.MusteriVergiDairesi</strong></div>
                 </div>
+                <!-- Ürün bilgileri -->
                 <div class="row">
                     <div class="col"><strong>Ürün Adı</strong></div>
                     <div class="col"><strong>Stok Kodu</strong></div>
@@ -43,6 +45,7 @@
                     <div class="col"><strong>KDV Oranı</strong></div>
                     <div class="col"><strong>KDV Dahil Birim Fiyatı</strong></div>
                 </div>
+                <!-- Ürün bilgilerinin Apiden gelen kısmı -->
                 @foreach (var product in item.SatilanUrunler)
                 {
                     <div class="row">
@@ -56,13 +59,14 @@
                 <!-- Faturalandır Butonu -->
                 <div class="row">
                     <div class="col text-center">
-                        <a href="#" class="btn btn-primary downloadPDF" data-faturaid="@item.FaturaID">Print</a>
+                        <a href="#" class="btn btn-primary downloadPDF" data-faturaid="@item.FaturaID">Faturalandır</a>
                     </div>
                 </div>
-            </div> <!-- Fatura div'inin kapanış tagi -->
+            </div> 
         }
     </div>
 
+    <!-- JavaScript ve jQuery ile faturaları PDF olarak indirme işlemi -->
     <script>
                $(document).on('click', '.downloadPDF', function () {
             html2pdf($("#fatura_" + $(this).data("faturaid"))[0], {
@@ -73,6 +77,5 @@
         });
 
     </script>
-
 </body>
 </html>
