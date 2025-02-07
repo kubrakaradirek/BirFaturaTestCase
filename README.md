@@ -12,3 +12,7 @@ Veriler, SalesInvoiceViewModel modeline dönüştürülerek View'de görüntüle
 Web UI, Index view'ında her bir fatura için bilgileri kullanıcıya gösterir.
 Fatura verileri, kullanıcıya Bootstrap kullanılarak düzenli bir şekilde sunulur.
 Her bir fatura için PDF çıktısı almak amacıyla bir "Faturalandır" butonu yerleştirilmiştir. Bu buton, html2pdf kütüphanesi kullanılarak PDF'ye dönüştürülür.
+
+
+https://github.com/user-attachments/assets/f860906e-587b-4d47-b0e9-f16725959335
+
